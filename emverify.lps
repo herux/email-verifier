@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="14">
+      <Unit0>
+        <Filename Value="emverify.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="emverify"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="49" Y="8"/>
+        <UsageCount Value="29"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="main.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMain"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="main"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="101"/>
+        <CursorPos X="29" Y="115"/>
+        <UsageCount Value="29"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="../lazcomponent/synapse/dnssend.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="dnssend"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="539"/>
+        <CursorPos X="27" Y="507"/>
+        <UsageCount Value="27"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="../lazcomponent/csvdocument/csvdocument.pas"/>
+        <UnitName Value="CsvDocument"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="49"/>
+        <CursorPos X="17" Y="38"/>
+        <UsageCount Value="9"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="../lazcomponent/csvdocument/demo/mainfrm.pas"/>
+        <UnitName Value="mainfrm"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="112"/>
+        <CursorPos X="48" Y="131"/>
+        <UsageCount Value="11"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="../lazarus/lcl/interfaces/carbon/carbonwsdialogs.pp"/>
+        <UnitName Value="CarbonWSDialogs"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="340"/>
+        <CursorPos X="42" Y="345"/>
+        <UsageCount Value="10"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="../lazarus/lcl/include/control.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2085"/>
+        <CursorPos X="1" Y="2100"/>
+        <UsageCount Value="10"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="../lazarus/lcl/include/buttoncontrol.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="7"/>
+        <CursorPos X="1" Y="21"/>
+        <UsageCount Value="10"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="../lazarus/lcl/include/buttons.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="326"/>
+        <CursorPos X="1" Y="350"/>
+        <UsageCount Value="10"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="../lazarus/lcl/include/wincontrol.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="5315"/>
+        <CursorPos X="1" Y="5328"/>
+        <UsageCount Value="10"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="../lazarus/lcl/lclmessageglue.pas"/>
+        <UnitName Value="LCLMessageGlue"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="507"/>
+        <CursorPos X="1" Y="521"/>
+        <UsageCount Value="10"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="../lazarus/lcl/interfaces/carbon/carbonbuttons.pp"/>
+        <UnitName Value="CarbonButtons"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="331"/>
+        <CursorPos X="1" Y="345"/>
+        <UsageCount Value="10"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="../lazarus/lcl/interfaces/carbon/carbonprivatecontrol.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="28"/>
+        <CursorPos X="1" Y="46"/>
+        <UsageCount Value="10"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="../lazarus/lcl/interfaces/carbon/carbonobject.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="680"/>
+        <CursorPos X="1" Y="693"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+    </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <JumpHistory Count="11" HistoryIndex="10">
+      <Position1>
+        <Filename Value="main.pas"/>
+        <Caret Line="115" Column="1" TopLine="105"/>
+      </Position1>
+      <Position2>
+        <Filename Value="main.pas"/>
+        <Caret Line="116" Column="1" TopLine="105"/>
+      </Position2>
+      <Position3>
+        <Filename Value="main.pas"/>
+        <Caret Line="112" Column="1" TopLine="105"/>
+      </Position3>
+      <Position4>
+        <Filename Value="main.pas"/>
+        <Caret Line="113" Column="1" TopLine="105"/>
+      </Position4>
+      <Position5>
+        <Filename Value="main.pas"/>
+        <Caret Line="114" Column="1" TopLine="105"/>
+      </Position5>
+      <Position6>
+        <Filename Value="main.pas"/>
+        <Caret Line="115" Column="1" TopLine="105"/>
+      </Position6>
+      <Position7>
+        <Filename Value="main.pas"/>
+        <Caret Line="116" Column="1" TopLine="105"/>
+      </Position7>
+      <Position8>
+        <Filename Value="main.pas"/>
+        <Caret Line="122" Column="1" TopLine="105"/>
+      </Position8>
+      <Position9>
+        <Filename Value="main.pas"/>
+        <Caret Line="125" Column="1" TopLine="105"/>
+      </Position9>
+      <Position10>
+        <Filename Value="main.pas"/>
+        <Caret Line="65" Column="1" TopLine="50"/>
+      </Position10>
+      <Position11>
+        <Filename Value="main.pas"/>
+        <Caret Line="118" Column="28" TopLine="105"/>
+      </Position11>
+    </JumpHistory>
+  </ProjectSession>
+  <EditorMacros Count="0"/>
+</CONFIG>

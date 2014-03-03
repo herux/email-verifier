@@ -1,0 +1,68 @@
+object frmMain: TfrmMain
+  Left = 879
+  Height = 611
+  Top = 23
+  Width = 360
+  Caption = 'Email Address Verify'
+  ClientHeight = 611
+  ClientWidth = 360
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  LCLVersion = '1.3'
+  object lvEmails: TListView
+    Left = 8
+    Height = 440
+    Top = 24
+    Width = 345
+    Columns = <    
+      item
+        Width = 200
+      end    
+      item
+        Width = 80
+      end>
+    ScrollBars = ssVertical
+    SortType = stBoth
+    TabOrder = 0
+    ViewStyle = vsReport
+  end
+  object btnLoadCSV: TButton
+    Left = 8
+    Height = 25
+    Top = 1
+    Width = 104
+    Caption = 'Load CSV data'
+    OnClick = btnLoadCSVClick
+    TabOrder = 1
+  end
+  object btnVerifyAll: TButton
+    Left = 246
+    Height = 25
+    Top = 1
+    Width = 107
+    Caption = 'Verify All'
+    OnClick = btnVerifyAllClick
+    TabOrder = 2
+  end
+  object ProgressBar1: TProgressBar
+    Left = 8
+    Height = 9
+    Top = 461
+    Width = 342
+    TabOrder = 3
+  end
+  object mmoLog: TMemo
+    Left = 8
+    Height = 130
+    Top = 472
+    Width = 342
+    TabOrder = 4
+  end
+  object CSV_OpenDialog: TOpenDialog
+    FileName = '/Users/herux/Downloads'
+    Filter = 'csv|*.csv'
+    InitialDir = '/Users/herux/'
+    left = 160
+    top = 64
+  end
+end
