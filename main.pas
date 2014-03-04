@@ -139,30 +139,27 @@ var
    telnet: TTelnetSend;
    i: Integer;
 
-          procedure Read;
-          var
-             S : String;
-
+          function Read: String;
              procedure Strip0;
               var
                  I : Integer;
               begin
                    i:=1;
-                   while i<=Length(S) do
+                   while i<=Length(Result) do
                    begin
-                        if (S[i]=#0)and (S[i-1]=#13)
-                        then System.Delete(S,i-1,2)
+                        if (Result[i]=#0)and (Result[i-1]=#13)
+                        then System.Delete(Result,i-1,2)
                         else Inc(i);
                    end;
               end;
 
           begin
-               S:=telnet.RecvString;
-               while S<>'' do
+               Result := telnet.RecvString;
+               while Result <> '' do
                begin
                     Strip0;
-                    mmoLog.Lines.Add(S);
-                    S:=telnet.RecvString;
+                    mmoLog.Lines.Add(Result);
+                    Result:=telnet.RecvString;
                end;
           end;
 
@@ -199,20 +196,28 @@ begin
 
       telnet := TTelnetSend.Create;
       try
-         telnet.TargetHost := dnsList[0];
-         telnet.TargetPort := '25';
-         telnet.Timeout := 1000;
-         telnet.TermType:= 'dumb';
-         telnet.Login;
-         Read;
-         telnet.Send('HELO'#13#10);
-         Read;
-         telnet.Send('MAIL FROM:<herux@bisnis2030.com>'#13#10);
-         Read;
-         telnet.Send('RCPT TO:<'+EmailAddress+'>');
-         Read;
-      except on E:Exception do
-         mmoLog.Lines.Add('Error connecting to nameserver: '+dnsList[0]);
+        try
+           telnet.TargetHost := dnsList[0];
+           telnet.TargetPort := '25';
+           telnet.Timeout := 1000;
+           telnet.TermType:= 'dumb';
+           telnet.Login;
+           Read;
+           telnet.Send('HELO'#13#10);
+           Read;
+           telnet.Send('MAIL FROM:<herux@bisnis2030.com>'#13#10);
+           Read;
+           telnet.Send('RCPT TO:<'+EmailAddress+'>');
+           if Pos( Read, 'OK') >= 1 then
+              Result := True
+           else
+              Result := False;
+           telnet.Logout;
+        except on E:Exception do
+           mmoLog.Lines.Add('Error connecting to nameserver: '+dnsList[0]);
+        end;
+      finally
+        telnet.Free;
       end;
 
       Result := True;
