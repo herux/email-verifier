@@ -1,14 +1,14 @@
 object frmMain: TfrmMain
-  Left = 972
+  Left = 905
   Height = 716
-  Top = 0
+  Top = 23
   Width = 360
   Caption = 'Email Address Verify'
   ClientHeight = 716
   ClientWidth = 360
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '1.0.14.0'
+  LCLVersion = '1.3'
   object lvEmails: TListView
     Left = 8
     Height = 520
@@ -56,6 +56,7 @@ object frmMain: TfrmMain
     Height = 130
     Top = 576
     Width = 342
+    ScrollBars = ssVertical
     TabOrder = 4
   end
   object CSV_OpenDialog: TOpenDialog

@@ -1,2 +1,14 @@
 
 *.bak
+
+*.o
+
+*.ppu
+
+*.compiled
+
+*.or
+
+*.res
+
+lib/i386-darwin/main.lfm

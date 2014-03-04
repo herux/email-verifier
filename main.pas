@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ComCtrls, ExtCtrls, Buttons, CsvDocument, dnssend;
+  ComCtrls, ExtCtrls, Buttons, CsvDocument, dnssend, tlntsend;
 
 type
 
@@ -131,11 +131,41 @@ begin
 end;
 
 function TfrmMain.VerifyEmail(EmailAddress: String): boolean;
+
 var
    dnsList: TStringList;
    domainParser: TStringList;
    domainName: String;
+   telnet: TTelnetSend;
    i: Integer;
+
+          procedure Read;
+          var
+             S : String;
+
+             procedure Strip0;
+              var
+                 I : Integer;
+              begin
+                   i:=1;
+                   while i<=Length(S) do
+                   begin
+                        if (S[i]=#0)and (S[i-1]=#13)
+                        then System.Delete(S,i-1,2)
+                        else Inc(i);
+                   end;
+              end;
+
+          begin
+               S:=telnet.RecvString;
+               while S<>'' do
+               begin
+                    Strip0;
+                    mmoLog.Lines.Add(S);
+                    S:=telnet.RecvString;
+               end;
+          end;
+
 begin
    dnsList := TStringList.Create;
    domainParser:=  TStringList.Create;
@@ -154,10 +184,37 @@ begin
         Result := False;
         Exit;
       end;
+
+      if dnsList.Count = 0 then
+      begin
+        Result := False;
+        mmoLog.Lines.Add('Name server not found for email address: '+EmailAddress);
+        Exit;
+      end;
+
       for i:= 0 to dnsList.Count - 1 do
       begin
          mmoLog.Lines.add(dnsList[i]);
       end;
+
+      telnet := TTelnetSend.Create;
+      try
+         telnet.TargetHost := dnsList[0];
+         telnet.TargetPort := '25';
+         telnet.Timeout := 1000;
+         telnet.TermType:= 'dumb';
+         telnet.Login;
+         Read;
+         telnet.Send('HELO'#13#10);
+         Read;
+         telnet.Send('MAIL FROM:<herux@bisnis2030.com>'#13#10);
+         Read;
+         telnet.Send('RCPT TO:<'+EmailAddress+'>');
+         Read;
+      except on E:Exception do
+         mmoLog.Lines.Add('Error connecting to nameserver: '+dnsList[0]);
+      end;
+
       Result := True;
    finally
      dnsList.Free;
