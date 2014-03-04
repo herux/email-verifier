@@ -28,7 +28,7 @@ type
     procedure PopulateData(dataStrings: TStringList);
     function GetDataCSV(CSVFilename: String): TStringList;
     procedure VerifyAllEmails;
-    procedure VerifyEmail(EmailAddress: String);
+    function VerifyEmail(EmailAddress: String): boolean;
   public
     { public declarations }
   end;
@@ -111,15 +111,18 @@ begin
     ProgressBar1.Max:=lvEmails.Items.Count - 1;
     for i:= 0 to lvEmails.Items.Count - 1 do
     begin
-//       item := lvEmails.Items[i];
+       item := lvEmails.Items[i];
        ProgressBar1.Position:= i;
-       emailAddress := lvEmails.Items[i].Caption;
+       emailAddress := item.Caption;
        try
-          VerifyEmail(emailAddress);
-          lvEmails.Items[i].SubItems.Add('Verified');
+          if VerifyEmail(emailAddress) then
+           item.SubItems.Add('Verified')
+          else
+           item.SubItems.Add('Fail');
        except on E:Exception do
-          lvEmails.Items[i].SubItems.Add('Fail');
+          item.SubItems.Add('Fail');
        end;
+       application.ProcessMessages;
     end;
   finally
     lvEmails.EndUpdate;
@@ -127,23 +130,38 @@ begin
 
 end;
 
-procedure TfrmMain.VerifyEmail(EmailAddress: String);
+function TfrmMain.VerifyEmail(EmailAddress: String): boolean;
 var
-   dns: TDNSSend;
    dnsList: TStringList;
-   splitters: TStringList;
+   domainParser: TStringList;
    domainName: String;
    i: Integer;
 begin
    dnsList := TStringList.Create;
+   domainParser:=  TStringList.Create;
    try
-      GetMailServers('bisnis2030.com', 'gmail.com', dnsList);
+      domainParser.delimiter := '@';
+      domainParser.delimitedText := EmailAddress;
+      if domainParser.count = 0 then
+      begin
+        Result := False;
+        exit;
+      end;
+      domainName := domainParser[1];
+      GetMailServers('bisnis2030.com', domainName, dnsList);
+      if dnsList.count = 0 then
+      begin
+        Result := False;
+        Exit;
+      end;
       for i:= 0 to dnsList.Count - 1 do
       begin
-//         mmoLog.Lines.Assign(dnsList);
+         mmoLog.Lines.add(dnsList[i]);
       end;
+      Result := True;
    finally
-     FreeAndNil(dns);
+     dnsList.Free;
+     domainParser.free;
    end;
 end;
 
