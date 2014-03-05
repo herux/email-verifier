@@ -175,7 +175,7 @@ begin
         exit;
       end;
       domainName := domainParser[1];
-      GetMailServers('bisnis2030.com', domainName, dnsList);
+      GetMailServers('verify-email.org', domainName, dnsList);
       if dnsList.count = 0 then
       begin
         Result := False;
@@ -203,9 +203,9 @@ begin
            telnet.TermType:= 'dumb';
            telnet.Login;
            Read;
-           telnet.Send('HELO'#13#10);
+           telnet.Send('HELO verify-email.org'#13#10);
            Read;
-           telnet.Send('MAIL FROM:<herux@bisnis2030.com>'#13#10);
+           telnet.Send('MAIL FROM:<check@verify-email.org>'#13#10);
            Read;
            telnet.Send('RCPT TO:<'+EmailAddress+'>');
            if Pos( Read, 'OK') >= 1 then
