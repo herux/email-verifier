@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 905
+  Left = 1064
   Height = 716
-  Top = 23
+  Top = 120
   Width = 360
   Caption = 'Email Address Verify'
   ClientHeight = 716
@@ -30,16 +30,16 @@ object frmMain: TfrmMain
     Left = 8
     Height = 25
     Top = 1
-    Width = 104
+    Width = 168
     Caption = 'Load CSV data'
     OnClick = btnLoadCSVClick
     TabOrder = 1
   end
   object btnVerifyAll: TButton
-    Left = 246
+    Left = 182
     Height = 25
     Top = 1
-    Width = 107
+    Width = 171
     Caption = 'Verify All'
     OnClick = btnVerifyAllClick
     TabOrder = 2

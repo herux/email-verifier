@@ -80,10 +80,13 @@ var
    emailItem: TListItem;
 begin
   lvEmails.BeginUpdate;
+  progressBar1.Position:=0;
+  progressBar1.Max:= dataStrings.Count;
   for I:= 0 to dataStrings.Count - 1 do
   begin
       emailItem := lvEmails.Items.Add;
       emailItem.Caption:= dataStrings[I];
+      progressBar1.Position:= i;
   end;
   lvEmails.EndUpdate;
 end;

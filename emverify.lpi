@@ -35,7 +35,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="4">
       <Unit0>
         <Filename Value="emverify.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -50,10 +50,15 @@
         <UnitName Value="main"/>
       </Unit1>
       <Unit2>
-        <Filename Value="../lazcomponent/synapse/dnssend.pas"/>
+        <Filename Value="../objpascal-component/synapse/tlntsend.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="tlntsend"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="../objpascal-component/synapse/dnssend.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="dnssend"/>
-      </Unit2>
+      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -64,7 +69,7 @@
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
       <Libraries Value="../lazcomponent/synapse"/>
-      <OtherUnitFiles Value="../lazcomponent/synapse"/>
+      <OtherUnitFiles Value="../objpascal-component/synapse"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

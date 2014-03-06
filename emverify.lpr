@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, main, csvdocument_package
+  Forms, main, csvdocument_package, tlntsend, dnssend
   { you can add units after this };
 
 {$R *.res}
