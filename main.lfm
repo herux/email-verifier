@@ -1,13 +1,15 @@
 object frmMain: TfrmMain
-  Left = 1064
+  Left = 2228
   Height = 716
-  Top = 120
+  Top = 28
   Width = 360
+  BorderStyle = bsDialog
   Caption = 'Email Address Verify'
   ClientHeight = 716
   ClientWidth = 360
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  Position = poDesktopCenter
   LCLVersion = '1.3'
   object lvEmails: TListView
     Left = 8
@@ -27,43 +29,56 @@ object frmMain: TfrmMain
     ViewStyle = vsReport
   end
   object btnLoadCSV: TButton
-    Left = 8
+    Left = 10
     Height = 25
-    Top = 1
-    Width = 168
+    Top = 4
+    Width = 121
     Caption = 'Load CSV data'
     OnClick = btnLoadCSVClick
     TabOrder = 1
   end
   object btnVerifyAll: TButton
-    Left = 182
+    Left = 143
     Height = 25
-    Top = 1
-    Width = 171
+    Top = 4
+    Width = 85
     Caption = 'Verify All'
     OnClick = btnVerifyAllClick
     TabOrder = 2
   end
   object ProgressBar1: TProgressBar
-    Left = 8
+    Left = 10
     Height = 10
-    Top = 560
-    Width = 342
+    Top = 553
+    Width = 339
     TabOrder = 3
   end
   object mmoLog: TMemo
-    Left = 8
-    Height = 130
-    Top = 576
-    Width = 342
+    Left = 10
+    Height = 138
+    Top = 568
+    Width = 339
     ScrollBars = ssVertical
     TabOrder = 4
   end
+  object btnSave: TButton
+    Left = 240
+    Height = 25
+    Top = 4
+    Width = 109
+    Caption = 'Save to CSV'
+    OnClick = btnSaveClick
+    TabOrder = 5
+  end
   object CSV_OpenDialog: TOpenDialog
-    FileName = '/Users/herux/Downloads'
     Filter = 'csv|*.csv'
     InitialDir = '/Users/herux/'
     left = 160
     top = 64
+  end
+  object CSV_SaveDialog: TSaveDialog
+    Filter = 'csv|*.csv'
+    left = 160
+    top = 128
   end
 end

@@ -15,11 +15,14 @@ type
   TfrmMain = class(TForm)
     btnLoadCSV: TButton;
     btnVerifyAll: TButton;
+    btnSave: TButton;
     CSV_OpenDialog: TOpenDialog;
     lvEmails: TListView;
     mmoLog: TMemo;
     ProgressBar1: TProgressBar;
+    CSV_SaveDialog: TSaveDialog;
     procedure btnLoadCSVClick(Sender: TObject);
+    procedure btnSaveClick(Sender: TObject);
     procedure btnVerifyAllClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -32,6 +35,10 @@ type
   public
     { public declarations }
   end;
+
+const
+  cVerified = 'Verified';
+  cFail = 'Fail';
 
 var
   frmMain: TfrmMain;
@@ -59,6 +66,12 @@ begin
   end;
 end;
 
+procedure TfrmMain.btnSaveClick(Sender: TObject);
+begin
+  if CSV_SaveDialog.Execute then
+      FDoc.SaveToFile(CSV_SaveDialog.FileName);
+end;
+
 procedure TfrmMain.btnVerifyAllClick(Sender: TObject);
 begin
   VerifyAllEmails;
@@ -81,12 +94,13 @@ var
 begin
   lvEmails.BeginUpdate;
   progressBar1.Position:=0;
-  progressBar1.Max:= dataStrings.Count;
+  progressBar1.Max:= dataStrings.Count - 1;
   for I:= 0 to dataStrings.Count - 1 do
   begin
       emailItem := lvEmails.Items.Add;
       emailItem.Caption:= dataStrings[I];
       progressBar1.Position:= i;
+      application.ProcessMessages;
   end;
   lvEmails.EndUpdate;
 end;
@@ -115,16 +129,22 @@ begin
     for i:= 0 to lvEmails.Items.Count - 1 do
     begin
        item := lvEmails.Items[i];
-       ProgressBar1.Position:= i;
        emailAddress := item.Caption;
        try
           if VerifyEmail(emailAddress) then
-           item.SubItems.Add('Verified')
-          else
-           item.SubItems.Add('Fail');
-       except on E:Exception do
-          item.SubItems.Add('Fail');
+          begin
+           item.SubItems.Add(cVerified);
+           FDoc.Cells[1, i] := cVerified;
+          end else begin
+           item.SubItems.Add(cFail);
+           FDoc.Cells[1, i] := cFail;
+          end;
+       except on E:Exception do begin
+          item.SubItems.Add(cFail);
+          FDoc.Cells[1, i] := cFail;
+          end;
        end;
+       ProgressBar1.Position:= i;
        application.ProcessMessages;
     end;
   finally
@@ -178,7 +198,7 @@ begin
         exit;
       end;
       domainName := domainParser[1];
-      GetMailServers('verify-email.org', domainName, dnsList);
+      GetMailServers('bisnis2030.com', domainName, dnsList);
       if dnsList.count = 0 then
       begin
         Result := False;
@@ -206,9 +226,9 @@ begin
            telnet.TermType:= 'dumb';
            telnet.Login;
            Read;
-           telnet.Send('HELO verify-email.org'#13#10);
+           telnet.Send('HELO untuk.cek.subcriber@gmail.com'#13#10);
            Read;
-           telnet.Send('MAIL FROM:<check@verify-email.org>'#13#10);
+           telnet.Send('MAIL FROM:<untuk.cek.subcriber@gmail.com>'#13#10);
            Read;
            telnet.Send('RCPT TO:<'+EmailAddress+'>');
            if Pos( Read, 'OK') >= 1 then
